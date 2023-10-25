@@ -1,0 +1,29 @@
+@media (max-width: 1150px) {
+    .contactForm {
+        width: 50% !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .contactForm {
+        width: 65% !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .contactForm {
+        width: 85% !important;
+    }
+}
+
+@media (max-width: 550px) {
+    .thank-you {
+        font-size: 14px;
+    }
+}
+
+.contactForm {
+    &__header {
+        width: 90%;
+    }
+}

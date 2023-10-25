@@ -1,0 +1,336 @@
+.nav {
+//     position: fixed;
+//     z-index: 100000;
+    transition: background-color, .3s;
+//     width: 100%;
+//     left: 50%;
+//     transform: translateX(-50%);
+    font-family: 'open sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+//     &__logo {
+//         height: 50px;
+//     }
+
+//     &__inner {
+//         display: flex;
+//         width: 70%;
+//         justify-content: space-between;
+//         margin: auto;
+//         align-items: center;
+//         padding: 17px 0;
+//     }
+
+    &__scrolled {
+        background-color: #741ce8;;
+    }
+
+//     ul {
+//         list-style-type: none;
+
+//         li {
+//             display: inline;
+//             a {
+//                 color: white;
+//                 text-decoration: none;
+//             }
+        
+//             &:not(:last-child) {
+//                 margin-right: 30px;
+//             }
+//         }
+//     }
+}
+
+
+@media (max-width: 1275px) {
+    .nav__inner {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .nav__inner {
+        width: 90%;
+    }
+
+    .nav {
+        height: 65px !important;
+    }
+}
+
+@media (max-width: 1145px) {
+    .desktop-menu {
+        display: none;
+    }
+}
+
+@media (max-width: 530px) { 
+    .nav__logo-container {
+        height: 55% !important;
+    }
+}
+
+
+@keyframes shiftHideMenu {
+    0% {
+      transform: translateX(0);
+      pointer-events: all; }
+    100% {
+      transform: translateX(50px);
+      opacity: 0;
+      pointer-events: none; } }
+  
+  @keyframes shiftShowMenu {
+    0% {
+      transform: translateX(50px);
+      opacity: 0; }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: all; } }
+  
+  @keyframes shiftShowMobileMenu {
+    0% {
+      transform: translateX(50px);
+      opacity: 0; }
+    100% {
+      transform: translateX(0);
+      opacity: 1; } }
+
+.nav {
+    position: fixed;
+    top: 0;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+    z-index: 1; 
+    font-family: 'open sans', sans-serif;
+}
+    
+
+
+// .nav__branding {
+//     color: white;
+//     font-size: 3rem;
+//     font-family: 'Lobster', cursive;
+//     text-decoration: none; 
+// }
+
+.nav__menu {
+    list-style-type: none;
+    display: flex;
+    align-items: center; 
+}
+      
+.nav__menu--hidden {
+    pointer-events: none; 
+}
+
+.nav__menu--hidden .nav__menu-item--hidden {
+    animation-name: shiftHideMenu;
+    // animation-duration: .3s;
+    animation-duration: 0s;
+    animation-fill-mode: forwards; 
+}
+
+.nav__menu-item {
+    display: inline-block; 
+}
+
+.nav__menu-item-link {
+    // font-size: 1.5rem;
+    text-decoration: none;
+    color: white;
+    position: relative; 
+}
+
+.nav__menu-item-link:after {
+    content: '';
+    height: 2px;
+    position: absolute;
+    background-color: red;
+    width: 0;
+    left: 0;
+    top: calc(100% + 2px);
+    transition: width .4s; 
+}
+
+.nav__menu-item-link:hover:after {
+    width: 100%; 
+}
+
+.nav__menu-item:not(:nth-last-child(3)) {
+    margin-right: 4rem; 
+}
+
+.nav__menu-item--show {
+    animation-name: shiftShowMenu;
+    // animation-duration: .3s;
+    animation-duration: 0s;
+    animation-fill-mode: backwards; 
+}
+    
+.nav__menu-item--show.hamburger {
+    display: inline-block; 
+}
+  
+.nav__menu-item--hidden {
+    animation-name: shiftHideMenu;
+    animation-duration: .3s;
+    animation-fill-mode: forwards; 
+}
+  
+.hamburger {
+    // transition: all 1s ease;
+    // position: absolute;
+    // left: 100%;
+    z-index: 2;
+    cursor: pointer; 
+}
+.hamburger.isActive .hamburger__altMenuContainer--show {
+    height: 5000px;
+    width: 5000px;
+    pointer-events: none; 
+}
+
+.hamburger--visible {
+    transform: translateX(calc(-100% - 4rem)); 
+}
+
+.hamburger .line {
+    width: 40px;
+    height: 2px;
+    display: block;
+    background-color: white;
+    border-radius: 10px;
+    margin: 6px auto;
+    transition: all .3s ease-in-out; 
+}
+
+.hamburger.isActive .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg); 
+}
+
+.hamburger.isActive .line:nth-child(2) {
+    opacity: 0; 
+}
+
+.hamburger.isActive .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg); 
+}
+  
+.hamburger__altMenuContainer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all .4s;
+    background-color: black;
+    height: 0;
+    width: 0;
+    border-radius: 50%;
+    z-index: -1; 
+}
+  
+  .altMenuItems {
+    pointer-events: none;
+    display: none;
+    z-index: 5;
+    color: white;
+    position: absolute;
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-50%, -50%);
+    font-size: 70px; 
+}
+
+.altMenuItems a {
+    color: white;
+    text-decoration: none; 
+}
+  
+.altMenuItems--shown {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; 
+}
+  
+li.nav__mobileMenuItem {
+    animation-name: shiftShowMobileMenu;
+    animation-duration: .3s;
+    animation-fill-mode: backwards;
+    width: 100%; 
+}
+
+li.nav__mobileMenuItem a {
+    pointer-events: all; 
+    font-size: 32px;
+}
+
+@media (max-width: 470px) {
+    li.nav__mobileMenuItem a {
+        font-size: 24px;
+    }
+}
+
+.nav {
+    // background: transparent;
+    // justify-content: flex-end;
+    z-index: 10;
+    pointer-events: none;
+
+    &__menu {
+        pointer-events: all;
+    }
+
+    &__logo-container {
+        height: 70%;
+    }
+
+    &__logo {
+        height: 100%;
+    }
+}
+
+.hamburger {
+    display: none;
+    position: relative;
+}
+
+
+
+@media (min-width: 1145px) {
+    .altMenuItems {
+        display: none;
+    }
+}
+
+@media (max-width: 1145px) {
+    .nav__menu-item {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav {
+        padding: 0 32px !important;
+    }
+
+    
+
+}
+
+@media (max-width: 600px) {
+    .nav {
+        height: 50px !important;
+    }
+}
