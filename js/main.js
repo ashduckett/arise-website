@@ -85,43 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-
-    // document.querySelector('.quote-link').addEventListener('click', e => {
-    //     e.preventDefault();
-    //     scrollToElement('.contact', 82.5);
-        
-    // });
-
-    // document.querySelector('.portfolio-link').addEventListener('click', e => {
-    //     e.preventDefault();
-    //     scrollToElement('.portfolio', 82.5);
-    // });
-
-    // document.querySelector('.services-link').addEventListener('click', e => {
-    //     e.preventDefault();
-    //     scrollToElement('.pricing', 82.5);
-    // });
-
-    // document.querySelector('.home-link').addEventListener('click', e => {
-    //     e.preventDefault();
-
-    //     window.scroll({
-    //         top: 0, 
-    //         left: 0, 
-    //         behavior: 'smooth'
-    //       });
-    // });
-
-
-
-    
-    // Click event for submit button
         const submitButton = document.querySelector('.submit');
         
         submitButton.addEventListener('click', (evt) => {
             evt.preventDefault();
-            console.log('clicked')
 
             const name = document.querySelector('.name').value;
             const email = document.querySelector('.email').value;
@@ -131,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
             fd.append('name', name);
             fd.append('email', email);
             fd.append('enquiry', enquiry);
-            // fd.append('action', 'send_contact_email');
 
             const urlBase = window.location.origin;
 
@@ -150,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.querySelector('.name').value = '';
                         document.querySelector('.email').value = '';
                         document.querySelector('.enquiry').value = '';
-
                     }, 5000);
                 });
             }
@@ -158,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         // Hamburger
-        const relatedLocations = ['.header', '.slider-container', '.portfolio', '.pricing', '.contact'];
+        const relatedLocations = ['.header', '.intro', '.portfolio', '.pricing', '.contact'];
         // Get all of the mobile options
         const mobileOptions = document.querySelectorAll('.nav__mobileMenuItem a');
 
@@ -167,13 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
             mOption.addEventListener('click', (evt) => {
                 evt.preventDefault();
             
-                // Now we just need to know which one was clicked.
+                // Close mobile menu
                 document.querySelector('.hamburger').classList.toggle('isActive');
                 document.querySelector('.hamburger__altMenuContainer').classList.toggle('hamburger__altMenuContainer--show');
                 document.querySelector('.altMenuItems').classList.toggle('altMenuItems--shown');
                 
-                let offset = 100;
 
+                // Offset is the height of the navigation bar to take into consideration when scrolling an element into view.
+                // This changes based on screen width.
+                let offset = 100;
                 if (document.body.clientWidth > 1024) {
                     offset = 100;
                 } else if (document.body.clientWidth > 600) {
@@ -182,28 +149,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     offset = 50;
                 }
 
-
-
-
                 const element = document.querySelector(relatedLocations[i]);
                 const y = element.getBoundingClientRect().top + window.scrollY + -offset;
-                window.scrollTo({top: y, behavior: 'smooth'});
+                window.scrollTo( {top: y, behavior: 'smooth'} );
             });
         }
 
         // Now the same for the non-mobile bits
+
+        // Get hold of all of the desktop menu links.
         const desktopOptions = document.querySelectorAll('.nav__menu-item-link:not(.blog)');
 
+        // Iterate over them
         for (let i = 0; i < desktopOptions.length; i++) {
-
             const mOption = desktopOptions[i];
-            
+
             mOption.addEventListener('click', (evt) => {
                 evt.preventDefault();
             
-                history.pushState("", document.title, window.location.pathname + window.location.search);
-                document.querySelector(relatedLocations[i]).scrollIntoView();
-
                 let offset = 100;
 
                 if (document.body.clientWidth > 1024) {
@@ -222,6 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.scrollTo({top: y, behavior: 'smooth'});
             });
         }
+
+        document.querySelector('.contact-me-below').addEventListener('click', () => {
+            const intro = document.querySelector('.contact');
+            const y = intro.getBoundingClientRect().top + window.scrollY + -100;
+            window.scrollTo({top: y, behavior: 'smooth'});
+        });
 
         document.querySelector('.learn-more').addEventListener('click', () => {
             const intro = document.querySelector('.intro');

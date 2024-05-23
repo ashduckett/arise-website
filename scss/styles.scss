@@ -522,3 +522,13 @@ main {
   .notransition {
     transition: none !important;
   }
+  
+  .contact-me-below {
+    // text-decoration: none;
+    color: white;
+    text-decoration-style: dotted;
+  }
+
+  .slide p {
+    color: rgb(128, 128, 128) !important;
+  }

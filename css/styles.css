@@ -852,4 +852,13 @@ main {
   transition: none !important;
 }
 
+.contact-me-below {
+  color: white;
+  text-decoration-style: dotted;
+}
+
+.slide p {
+  color: rgb(128, 128, 128) !important;
+}
+
 /*# sourceMappingURL=styles.css.map */
